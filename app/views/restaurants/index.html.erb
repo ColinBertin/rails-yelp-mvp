@@ -3,11 +3,6 @@
   <br>
   <div class="cards">
     <% @restaurants.each do |restaurant| %>
-      <!--<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(http://source.unsplash.com/featured/?<%= restaurant.category %>&<%= rand(1000) %>)">
-        <br>
-        <p><%= restaurant.name %></p>
-        <%= link_to "" , restaurant_path(restaurant), class: "card-link"%>
-      </div>-->
       <div class="card-trip">
         <img src="http://source.unsplash.com/featured/?<%= restaurant.category %>&food&<%= rand(1000) %>" />
         <div class="card-trip-infos">
