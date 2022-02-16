@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Add a new restaurant</h1>
+  <%= simple_form_for(@restaurant) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :category, collection: Restaurant::CATEGORIES, include_blank: false %>
+  <%= f.input :address %>
+  <%= f.input :phone_number %>
+  <%= f.submit class:"btn btn-primary mt-2"%>
+  <% end %>
+</div>
+
+<div class="container mt-4">
+  <%= link_to restaurants_path do%>
+    <p><i class="fas fa-undo-alt"></i> Back to list</p>
+  <% end %>
+</div>
