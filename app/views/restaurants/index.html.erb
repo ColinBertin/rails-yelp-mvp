@@ -1,13 +1,25 @@
 <div class="container">
-  <h1>List of restaurants</h1>
+  <h1 class="mt-5">List of restaurants</h1>
   <br>
-  <% @restaurants.each do |restaurant| %>
-    <p><%= restaurant.name %></p>
-    <p><%= restaurant.category %></p>
-    <p><%= restaurant.address %></p>
-    <p><%= restaurant.phone_number %></p>
-    <%= link_to restaurant.name , restaurant_path(restaurant)%>
-    <br>
-  <% end %>
-  <%= link_to 'Create a new restaurant', new_restaurant_path, class: "btn btn-primary"%>
+  <div class="cards">
+    <% @restaurants.each do |restaurant| %>
+      <!--<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(http://source.unsplash.com/featured/?<%= restaurant.category %>&<%= rand(1000) %>)">
+        <br>
+        <p><%= restaurant.name %></p>
+        <%= link_to "" , restaurant_path(restaurant), class: "card-link"%>
+      </div>-->
+      <div class="card-trip">
+        <img src="http://source.unsplash.com/featured/?<%= restaurant.category %>&food&<%= rand(1000) %>" />
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= restaurant.name %></h2>
+            <p><%= restaurant.address %></p>
+          </div>
+          <h2 class="card-trip-pricing"><%= restaurant.category %></h2>
+        </div>
+      <%= link_to "" , restaurant_path(restaurant), class: "card-link"%>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to "Create a new restaurant", new_restaurant_path, class: "btn btn-success mt-4 mb-5"%>
 </div>

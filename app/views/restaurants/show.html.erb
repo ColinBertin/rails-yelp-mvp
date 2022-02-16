@@ -1,13 +1,35 @@
 <div class="container">
   <h1>Restaurant</h1>
-  <p><%= @restaurant.name %></p>
-  <p><%= @restaurant.category %></p>
-  <p><%= @restaurant.address %></p>
-  <p><%= @restaurant.phone_number %></p>
-  <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant) %>
+  <div class="cards">
+      <div class="card-trip">
+        <% stars = "" %>
+        <% unless @restaurant.reviews.empty? %>
+          <% rating = @restaurant.reviews.reduce(0) { |sum, review| sum + review.rating }/@restaurant.reviews.length %>
+          <% 5.times { |i| stars += i < rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'} %>
+        <% end %>
+        <img src="http://source.unsplash.com/featured/?<%= @restaurant.category %>&food&<%= rand(1000) %>" />
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= @restaurant.name %></h2>
+            <p><i class="fas fa-map-marker-alt text-success"></i> - <%= @restaurant.address %> </p>
+            <p><i class="fas fa-phone text-success"></i> - <%= @restaurant.phone_number %></p>
+            <p class="text-warning"><%= sanitize stars %></p>
+          </div>
+          <h2 class="card-trip-pricing"><%= @restaurant.category %></h2>
+        </div>
+      </div>
+  </div>
+  <%= link_to new_restaurant_review_path(@restaurant) do%>
+    <p class="mt-3"><i class="fas fa-pencil-alt"></i> Leave a review</p>
+  <% end %>
   <ul class="list-group">
   <% @restaurant.reviews.each do |review| %>
     <li class="list-group-item"><%= review.content %></li>
   <% end %>
 </ul>
+<div class="container mt-4">
+  <%= link_to restaurants_path do%>
+    <p><i class="fas fa-undo-alt"></i> Back to list</p>
+  <% end %>
+</div>
 </div>
